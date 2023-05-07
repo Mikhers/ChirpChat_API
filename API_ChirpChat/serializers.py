@@ -13,11 +13,10 @@ class amigosSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ('created_at',)
 class fotoSerializer(serializers.ModelSerializer):
-    # foto = Base64ImageField(required=False)
     imagen = Base64ImageField(required=False)
     class Meta:
         model = foto
-        fields = ["titulo","imagen"]
+        fields = ["imagen"]
         read_only_fields = ('created_at',)
 class solicitudSerializer(serializers.ModelSerializer):
     class Meta:

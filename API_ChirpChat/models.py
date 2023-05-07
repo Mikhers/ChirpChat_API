@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class foto(models.Model):
-    imagen= models.ImageField(null=True, blank=True, upload_to='fotos/')
+    imagen= models.ImageField(null=True, blank=True, upload_to='media/')
     create_at= models.DateTimeField(auto_now_add=True)
 
 class usuario(models.Model):
