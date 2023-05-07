@@ -16,7 +16,7 @@ class fotoSerializer(serializers.ModelSerializer):
     imagen = Base64ImageField(required=False)
     class Meta:
         model = foto
-        fields = ["imagen"]
+        fields = ["id","imagen"]
         read_only_fields = ('created_at',)
 class solicitudSerializer(serializers.ModelSerializer):
     class Meta:

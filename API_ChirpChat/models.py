@@ -35,12 +35,10 @@ class amigos(models.Model):
 class solicitud(models.Model):
     my_self= models.ForeignKey(usuario, on_delete=models.CASCADE, related_name='my_solicitudes')
     user= models.ForeignKey(usuario, on_delete=models.CASCADE, related_name='solicitud_amistad')
-    # aceptada= models.BooleanField(default=False)
     create_at= models.DateTimeField(auto_now_add=True)
 
 class publicacion(models.Model):
     my_self= models.ForeignKey(usuario, on_delete=models.CASCADE)
-    titulo= models.CharField(max_length=255)
     contenido= models.TextField()
     id_foto= models.ForeignKey(foto, on_delete=models.CASCADE)
     create_at= models.DateTimeField(auto_now_add=True)
