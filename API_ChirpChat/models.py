@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 
 class foto(models.Model):
-    titulo= models.CharField(max_length=100)
     imagen= models.ImageField(null=True, blank=True, upload_to='fotos/')
     create_at= models.DateTimeField(auto_now_add=True)
 
