@@ -4,7 +4,7 @@ from django.db import models
 
 class foto(models.Model):
     titulo= models.CharField(max_length=100)
-    url= models.CharField(max_length=100)
+    imagen= models.ImageField(null=True, blank=True, upload_to='fotos/')
     create_at= models.DateTimeField(auto_now_add=True)
 
 class usuario(models.Model):
@@ -13,7 +13,7 @@ class usuario(models.Model):
     user_name= models.CharField(max_length=100)
     email= models.CharField(max_length=255)
     password= models.CharField(max_length=255)
-    id_foto= models.ForeignKey(foto, on_delete=models.CASCADE)
+    id_foto= models.ForeignKey(foto, on_delete=models.CASCADE, null=True, blank=True)
     is_active= models.BooleanField(default=False)
     create_at= models.DateTimeField(auto_now_add=True)
 

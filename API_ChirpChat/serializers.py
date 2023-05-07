@@ -1,6 +1,6 @@
 from rest_framework import serializers
-
 from .models import usuario, amigos, foto, solicitud, publicacion, mensajes, chat
+from drf_extra_fields.fields import Base64ImageField
 
 class usuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,9 +13,11 @@ class amigosSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ('created_at',)
 class fotoSerializer(serializers.ModelSerializer):
+    # foto = Base64ImageField(required=False)
+    imagen = Base64ImageField(required=False)
     class Meta:
         model = foto
-        fields = "__all__"
+        fields = ["titulo","imagen"]
         read_only_fields = ('created_at',)
 class solicitudSerializer(serializers.ModelSerializer):
     class Meta:
