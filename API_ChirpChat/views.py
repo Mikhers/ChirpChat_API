@@ -1,13 +1,13 @@
 from rest_framework import viewsets, permissions
-from .models import usuario, amigos, foto, solicitud, publicacion, mensajes, chat
-from .serializers import usuarioSerializer, amigosSerializer, fotoSerializer, solicitudSerializer, publicacionSerializer, mensajesSerializer, chatSerializer
+from .models import usuario, amigos, solicitud, publicacion, mensajes, chat
+from .serializers import usuarioSerializer, amigosSerializer, solicitudSerializer, publicacionSerializer, mensajesSerializer, chatSerializer
 # Create your views here.
 
 
-class FotoViewSet(viewsets.ModelViewSet):
-    queryset = foto.objects.all()
-    permission_classes = [permissions.AllowAny]
-    serializer_class = fotoSerializer
+# class FotoViewSet(viewsets.ModelViewSet):
+#     queryset = foto.objects.all()
+#     permission_classes = [permissions.AllowAny]
+#     serializer_class = fotoSerializer
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = usuario.objects.all()
     permission_classes = [permissions.AllowAny]

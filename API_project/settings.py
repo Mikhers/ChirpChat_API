@@ -11,14 +11,18 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import environ
 import os
 import dj_database_url
 
+env = environ.Env()
+environ.Env.read_env()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+SECRET_KEY = env.str('SECRET_KEY')
 
-DEBUG = 'RENDER' not in os.environ
+DEBUG = env.bool('DEBUG', default=True)
 
 ALLOWED_HOSTS = []
 
@@ -43,9 +47,9 @@ INSTALLED_APPS = [
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', default='AKIATUG3UPFPBPJHDYOF')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', default='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')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', default='chirpchatbucketimages')
+AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
 AWS_QUERYSTRING_AUTH = False
 
 
@@ -83,14 +87,14 @@ WSGI_APPLICATION = "API_project.wsgi.application"
 
 DATABASES = {
     'default': dj_database_url.config(        
-        default='postgres://postgres:21308182@localhost:5432/chirp_chat',
+        default='postgres://postgres:{}@localhost:5432/chirp_chat'.format(env.str('PASSWORD_DB')),
         conn_max_age=600    
     )
     # "default": {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': 'chirp_chat',
     #     'USER': 'postgres',
-    #     'PASSWORD': '21308182',
+    #     'PASSWORD': '',
     #     'HOST': 'localhost',
     #     'PORT': '5432',
     # }

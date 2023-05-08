@@ -2,9 +2,9 @@ from django.db import models
 
 # Create your models here.
 
-class foto(models.Model):
-    imagen= models.ImageField(null=True, blank=True, upload_to='media/')
-    create_at= models.DateTimeField(auto_now_add=True)
+# class foto(models.Model):
+#     imagen= models.ImageField(null=True, blank=True, upload_to='media/')
+#     create_at= models.DateTimeField(auto_now_add=True)
 
 class usuario(models.Model):
     nombre= models.CharField(max_length=100)
@@ -12,8 +12,8 @@ class usuario(models.Model):
     user_name= models.CharField(max_length=100)
     email= models.CharField(max_length=255)
     password= models.CharField(max_length=255)
-    id_foto= models.ForeignKey(foto, on_delete=models.CASCADE, null=True, blank=True)
     is_active= models.BooleanField(default=False)
+    imagen= models.ImageField(null=True, blank=True, upload_to='media/')
     create_at= models.DateTimeField(auto_now_add=True)
 
 class chat(models.Model):
@@ -40,5 +40,5 @@ class solicitud(models.Model):
 class publicacion(models.Model):
     my_self= models.ForeignKey(usuario, on_delete=models.CASCADE)
     contenido= models.TextField()
-    id_foto= models.ForeignKey(foto, on_delete=models.CASCADE)
+    imagen= models.ImageField(null=True, blank=True, upload_to='media/')
     create_at= models.DateTimeField(auto_now_add=True)
