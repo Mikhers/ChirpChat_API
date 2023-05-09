@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = env.str('SECRET_KEY')
 
-DEBUG = env.bool('DEBUG', default=True)
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
@@ -87,7 +87,7 @@ WSGI_APPLICATION = "API_project.wsgi.application"
 
 DATABASES = {
     'default': dj_database_url.config(        
-        default='postgres://postgres:{}@localhost:5432/chirp_chat'.format(env.str('PASSWORD_DB')),
+        default='postgres://postgres:21308182@localhost:5432/chirp_chat',#.format(env.str('PASSWORD_DB')
         conn_max_age=600    
     )
     # "default": {
