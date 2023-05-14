@@ -2,9 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-# class foto(models.Model):
-#     imagen= models.ImageField(null=True, blank=True, upload_to='media/')
-#     create_at= models.DateTimeField(auto_now_add=True)
 
 class usuario(models.Model):
     nombre= models.CharField(max_length=100)
@@ -12,8 +9,8 @@ class usuario(models.Model):
     user_name= models.CharField(max_length=100)
     email= models.CharField(max_length=255)
     password= models.CharField(max_length=255)
-    is_active= models.BooleanField(default=False)
-    imagen= models.ImageField(null=True, blank=True, upload_to='media/')
+    is_active= models.BooleanField(default=False, null=True)
+    imagen= models.ImageField(null=True, blank=True, upload_to='media/', max_length=355)
     create_at= models.DateTimeField(auto_now_add=True)
 
 class chat(models.Model):
@@ -36,6 +33,10 @@ class solicitud(models.Model):
     my_self= models.ForeignKey(usuario, on_delete=models.CASCADE, related_name='my_solicitudes')
     user= models.ForeignKey(usuario, on_delete=models.CASCADE, related_name='solicitud_amistad')
     create_at= models.DateTimeField(auto_now_add=True)
+
+    # def save(self, *args, **kwargs):
+    #     self.primary_key_compuesta = f"{self.my_self_id}_{self.amigo_id}"
+    #     super().save(*args, **kwargs)
 
 class publicacion(models.Model):
     my_self= models.ForeignKey(usuario, on_delete=models.CASCADE)

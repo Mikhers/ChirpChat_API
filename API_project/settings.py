@@ -85,19 +85,17 @@ TEMPLATES = [
 WSGI_APPLICATION = "API_project.wsgi.application"
 
 
+NAME_DB = os.getenv('NAME_DB')
+USER_DB= os.getenv('USER_DB')
+PASSWORD_DB = os.getenv('PASSWORD_DB')
+HOST_DB = os.getenv('HOST_DB')
+PORT_DB = os.getenv('PORT_DB')
+    # }
 DATABASES = {
     'default': dj_database_url.config(        
-        default='postgres://postgres:21308182@localhost:5432/chirp_chat',#.format(env.str('PASSWORD_DB')
+        default='postgres://{}:{}@{}:{}/{}'.format(USER_DB, PASSWORD_DB, HOST_DB, PORT_DB, NAME_DB),
         conn_max_age=600    
     )
-    # "default": {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'chirp_chat',
-    #     'USER': 'postgres',
-    #     'PASSWORD': '',
-    #     'HOST': 'localhost',
-    #     'PORT': '5432',
-    # }
 }
 
 
@@ -116,9 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es-co"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Bogota"
 
 USE_I18N = True
 

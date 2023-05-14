@@ -13,12 +13,6 @@ class amigosSerializer(serializers.ModelSerializer):
         model = amigos
         fields = "__all__"
         read_only_fields = ('created_at',)
-# class fotoSerializer(serializers.ModelSerializer):
-#     imagen = Base64ImageField(required=False)
-#     class Meta:
-#         model = foto
-#         fields = ["id","imagen"]
-#         read_only_fields = ('created_at',)
 class solicitudSerializer(serializers.ModelSerializer):
     class Meta:
         model = solicitud
@@ -40,3 +34,8 @@ class chatSerializer(serializers.ModelSerializer):
         model = chat
         fields = "__all__"
         read_only_fields = ('created_at',)
+
+class AuthSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = usuario
+        fields = ["email", "password"]
