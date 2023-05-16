@@ -41,7 +41,7 @@ class AuthViewSet(APIView):
             if user is not None:
                 es_correcto = check_password(password, user['password'])
                 if es_correcto:
-                    return Response({'message': 'Inicio de sesión exitoso'}, status=status.HTTP_202_ACCEPTED)
+                    return Response(user, status=status.HTTP_202_ACCEPTED)
                 return Response({'message': 'Credenciales invalidas'}, status=status.HTTP_401_UNAUTHORIZED)
             return Response({'message': 'El usuario no se encuentra registrado'}, status=status.HTTP_401_UNAUTHORIZED)
         except:
