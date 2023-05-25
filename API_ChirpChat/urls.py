@@ -6,7 +6,6 @@ router = routers.DefaultRouter()
 
 router.register('usuario', UsuarioViewSet, 'usuario')
 router.register('amigo', AmigosViewSet, 'amigo')
-# router.register('foto', FotoViewSet, 'foto')
 router.register('solicitudes', solicitudViewSet, 'solicitudes')
 router.register('publicacion', PublicacionViewSet, 'publicacion')
 router.register('mensaje', MensajesViewSet, 'mensaje')
@@ -17,7 +16,7 @@ urlpatterns = router.urls
 urlpatterns += [
     path('login/', AuthViewSet.as_view(), name='login'),
     path('lista-amigos/<str:id>/', ListaAmigosViewSet.as_view(), name='lista-de-amigos'),
+    path('lista-publicaciones/<str:id>/', ListaAmigosViewSet.as_view(), name='lista-de-publicaciones'),
     path('lista-solicitudes/<str:id>/', ListasolicitudViewSet.as_view(), name='lista-de-solicitudes'),
     path('lista-chats/<str:id>/', ListaChatViewSet.as_view(), name='lista-de-chats'),
-
 ]

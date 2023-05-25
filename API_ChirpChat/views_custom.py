@@ -1,4 +1,4 @@
-from .serializers import AuthSerializer,amigosSerializer, solicitudSerializer, chatSerializer
+from .serializers import AuthSerializer,amigosSerializer, solicitudSerializer, chatSerializer, usuarioSerializer, publicacionSerializer
 from .models import usuario, amigos,solicitud, chat
 from django.contrib.auth.hashers import check_password
 from rest_framework import status
@@ -13,6 +13,13 @@ class ListaAmigosViewSet(generics.ListAPIView):
     def get_queryset(self):
         id = self.kwargs['id']
         queryset = amigos.objects.filter(Q(my_self=id) | Q(amigo=id))
+        return queryset
+    
+class ListapublicacionesViewSet(generics.ListAPIView):
+    serializer_class = publicacionSerializer
+    def get_queryset(self):
+        id = self.kwargs['id']
+        queryset = amigos.objects.filter(my_self=id)
         return queryset
     
 class ListasolicitudViewSet(generics.ListAPIView):
@@ -47,3 +54,11 @@ class AuthViewSet(APIView):
         except:
             return Response({'message': 'El usuario no se encuentra registrado'}, status=status.HTTP_401_UNAUTHORIZED)
 
+class noFriendsViewSet(APIView):
+    serializer_class = usuarioSerializer
+
+    def get_queryset(self):
+        id = self.kwargs['id']
+        # queryset = amigos.objects.exclude(Q(my_self=id) | Q(amigo=id))
+        queryset = queryset.exclude(amigo__in=solicitud.objects.filter(solicitante=id).values('destinatario'), my_self__in=solicitud.objects.filter(destinatario=id).values('solicitante'))
+        return queryset
