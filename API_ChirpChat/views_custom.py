@@ -1,5 +1,5 @@
 from .serializers import AuthSerializer,amigosSerializer, solicitudSerializer, chatSerializer, usuarioSerializer, publicacionSerializer
-from .models import usuario, amigos,solicitud, chat
+from .models import usuario, amigos,solicitud, chat, publicacion
 from django.contrib.auth.hashers import check_password
 from rest_framework import status
 from rest_framework import generics
@@ -19,7 +19,7 @@ class ListapublicacionesViewSet(generics.ListAPIView):
     serializer_class = publicacionSerializer
     def get_queryset(self):
         id = self.kwargs['id']
-        queryset = amigos.objects.filter(my_self=id)
+        queryset = publicacion.objects.filter(my_self=id)
         return queryset
     
 class ListasolicitudViewSet(generics.ListAPIView):
